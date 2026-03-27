@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sugarleaf Café – Win a Free Treat!</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brown-deep: #3E2723;
+    --brown-mid: #5D3B2E;
+    --cream: #F5E6D3;
+    --cream-light: #FAF3EA;
+    --green-dark: #0F3D2E;
+    --gold: #D4A373;
+    --gold-light: #E8C49A;
+    --text: #2C2C2C;
+    --text-muted: #7a6a5a;
+    --white: #FFFFFF;
+    --border: rgba(62,39,35,0.12);
+    --shadow: 0 20px 60px rgba(62,39,35,0.18);
+    --glow-green: rgba(15,61,46,0.25);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #e8ddd0;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 24px 16px 48px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 20%, rgba(212,163,115,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 80% 80%, rgba(62,39,35,0.1) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 50% 50%, rgba(245,230,211,0.4) 0%, transparent 80%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .card {
+    position: relative;
+    z-index: 1;
+    background: rgba(250, 243, 234, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    border: 1px solid rgba(212,163,115,0.3);
+    box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.6);
+    width: 100%;
+    max-width: 420px;
+    padding: 32px 28px 36px;
+    animation: cardIn 0.7s cubic-bezier(0.22,1,0.36,1) both;
+  }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(28px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .cafe-brand { text-align: center; margin-bottom: 20px; }
+  .cafe-brand .tagline {
+    font-size: 10px; font-weight: 600; letter-spacing: 3px;
+    color: var(--gold); text-transform: uppercase; margin-bottom: 6px;
+    animation: fadeUp 0.6s 0.1s both;
+  }
+  .cafe-brand h1 {
+    font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900;
+    color: var(--brown-deep); line-height: 1.1; margin-bottom: 8px;
+    animation: fadeUp 0.6s 0.2s both;
+  }
+  .cafe-brand .subtitle {
+    font-size: 13px; color: var(--text-muted); font-weight: 400;
+    animation: fadeUp 0.6s 0.3s both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .offer-box {
+    background: linear-gradient(135deg, rgba(212,163,115,0.2), rgba(212,163,115,0.08));
+    border: 1px solid rgba(212,163,115,0.4);
+    border-radius: 14px; padding: 14px 16px;
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; animation: fadeUp 0.6s 0.35s both;
+  }
+  .offer-icons { font-size: 22px; flex-shrink: 0; line-height: 1; }
+  .offer-box p { font-size: 12.5px; color: var(--brown-deep); line-height: 1.5; }
+  .offer-box strong { font-weight: 600; }
+
+  .field-group { margin-bottom: 16px; animation: fadeUp 0.6s both; }
+  .field-group:nth-child(1) { animation-delay: 0.4s; }
+  .field-group:nth-child(2) { animation-delay: 0.45s; }
+  .field-group:nth-child(3) { animation-delay: 0.5s; }
+  .field-group label {
+    display: block; font-size: 10px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--brown-deep); margin-bottom: 7px;
+  }
+  .field-group input {
+    width: 100%; padding: 13px 16px;
+    background: rgba(255,255,255,0.7);
+    border: 1.5px solid var(--border); border-radius: 12px;
+    font-family: 'Poppins', sans-serif; font-size: 14px;
+    color: var(--text); outline: none;
+    transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+  }
+  .field-group input::placeholder { color: #bfb0a0; font-size: 13px; }
+  .field-group input:focus {
+    border-color: var(--green-dark); background: rgba(255,255,255,0.95);
+    box-shadow: 0 0 0 3px var(--glow-green);
+  }
+
+  .section-label {
+    font-size: 13px; font-weight: 500; color: var(--text);
+    margin-bottom: 12px; margin-top: 20px;
+    animation: fadeUp 0.6s 0.55s both;
+  }
+
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; animation: fadeUp 0.6s 0.6s both; }
+  .pill input[type="checkbox"] { display: none; }
+  .pill label {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 7px 14px; border-radius: 50px;
+    border: 1.5px solid var(--border); background: rgba(255,255,255,0.6);
+    font-size: 12px; font-weight: 500; color: var(--brown-mid);
+    cursor: pointer; transition: all 0.2s ease; user-select: none;
+  }
+  .pill label:hover { border-color: var(--gold); background: rgba(212,163,115,0.12); transform: scale(1.04); }
+  .pill input:checked + label { background: var(--brown-deep); border-color: var(--brown-deep); color: var(--white); }
+
+  .drink-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    margin-bottom: 24px; animation: fadeUp 0.6s 0.65s both;
+  }
+  .drink input[type="radio"] { display: none; }
+  .drink label {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    padding: 16px 10px 14px; background: rgba(255,255,255,0.65);
+    border: 1.5px solid var(--border); border-radius: 14px;
+    cursor: pointer; transition: all 0.22s ease; text-align: center;
+    box-shadow: 0 2px 8px rgba(62,39,35,0.05);
+  }
+  .drink label .icon { font-size: 26px; line-height: 1; }
+  .drink label .name { font-size: 12px; font-weight: 500; color: var(--brown-mid); }
+  .drink label:hover { border-color: var(--gold); box-shadow: 0 6px 20px rgba(62,39,35,0.1); transform: translateY(-2px); }
+  .drink input:checked + label {
+    background: linear-gradient(135deg, var(--brown-deep), var(--brown-mid));
+    border-color: var(--brown-deep); box-shadow: 0 8px 24px rgba(62,39,35,0.2);
+    transform: translateY(-2px);
+  }
+  .drink input:checked + label .name { color: var(--white); }
+
+  .cta-btn {
+    display: block; width: 100%; padding: 16px;
+    background: var(--brown-deep); color: var(--white);
+    font-family: 'Poppins', sans-serif; font-size: 15px;
+    font-weight: 600; letter-spacing: 0.3px; border: none;
+    border-radius: 14px; cursor: pointer; text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    box-shadow: 0 6px 24px rgba(62,39,35,0.3);
+    animation: fadeUp 0.6s 0.7s both;
+  }
+  .cta-btn:hover { transform: scale(1.03); background: var(--brown-mid); box-shadow: 0 10px 32px rgba(62,39,35,0.35); }
+  .cta-btn:active { transform: scale(0.98); }
+  .cta-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+
+  .footer-note { text-align: center; font-size: 11px; color: var(--text-muted); margin-top: 16px; animation: fadeUp 0.6s 0.75s both; }
+  .divider { height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); margin: 20px 0 16px; }
+
+  .success-screen {
+    display: none; text-align: center;
+    padding: 20px 0 10px; animation: fadeUp 0.6s both;
+  }
+  .success-screen .big-icon { font-size: 56px; margin-bottom: 16px; }
+  .success-screen h2 { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--brown-deep); margin-bottom: 10px; }
+  .success-screen p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+  @media (max-width: 400px) {
+    .card { padding: 24px 18px 28px; }
+    .cafe-brand h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- FORM BODY -->
+  <div class="form-body" id="formBody">
+
+    <div class="cafe-brand">
+      <p class="tagline">☕ Sugar Leaf Cafe</p>
+      <h1>Win a Free Treat!</h1>
+      <p class="subtitle">Fill your details — get an instant reward on email</p>
+    </div>
+
+    <div class="offer-box">
+      <div class="offer-icons">🍔🧋🍵</div>
+      <p><strong>Free Burger</strong>, <strong>Cold Coffee</strong> or <strong>Ice Tea</strong> — lucky draw, coupon sent instantly!</p>
+    </div>
+
+    <div class="field-group">
+      <label for="name">Your Name *</label>
+      <input type="text" id="name" placeholder="e.g. Rahul Sharma" required>
+    </div>
+
+    <div class="field-group">
+      <label for="phone">Phone Number *</label>
+      <input type="tel" id="phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" maxlength="10" required>
+    </div>
+
+    <div class="field-group">
+      <label for="email">Email Address *</label>
+      <input type="email" id="email" placeholder="your@email.com" required>
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="section-label">What do you enjoy at the cafe? <span style="color:var(--text-muted);font-size:12px;">(optional)</span></p>
+
+    <div class="pills">
+      <span class="pill"><input type="checkbox" id="live-music" value="Live Music"><label for="live-music">🎵 Live Music</label></span>
+      <span class="pill"><input type="checkbox" id="wifi" value="Free WiFi"><label for="wifi">📶 Free WiFi</label></span>
+      <span class="pill"><input type="checkbox" id="books" value="Books & Games"><label for="books">📚 Books & Games</label></span>
+      <span class="pill"><input type="checkbox" id="workspace" value="Work Space"><label for="workspace">💻 Work Space</label></span>
+      <span class="pill"><input type="checkbox" id="desserts" value="Desserts"><label for="desserts">🍰 Desserts</label></span>
+      <span class="pill"><input type="checkbox" id="outdoor" value="Outdoor"><label for="outdoor">🌿 Outdoor</label></span>
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="section-label">Favourite drink? <span style="color:var(--text-muted);font-size:12px;">(optional)</span></p>
+
+    <div class="drink-grid">
+      <span class="drink"><input type="radio" id="espresso" name="drink" value="Espresso"><label for="espresso"><span class="icon">☕</span><span class="name">Espresso</span></label></span>
+      <span class="drink"><input type="radio" id="cappuccino" name="drink" value="Cappuccino"><label for="cappuccino"><span class="icon">🫧</span><span class="name">Cappuccino</span></label></span>
+      <span class="drink"><input type="radio" id="cold-coffee" name="drink" value="Cold Coffee"><label for="cold-coffee"><span class="icon">🧊</span><span class="name">Cold Coffee</span></label></span>
+      <span class="drink"><input type="radio" id="latte" name="drink" value="Latte"><label for="latte"><span class="icon">🥛</span><span class="name">Latte</span></label></span>
+      <span class="drink"><input type="radio" id="ice-tea" name="drink" value="Ice Tea"><label for="ice-tea"><span class="icon">🍵</span><span class="name">Ice Tea</span></label></span>
+      <span class="drink"><input type="radio" id="other" name="drink" value="Other"><label for="other"><span class="icon">✨</span><span class="name">Other</span></label></span>
+    </div>
+
+    <button class="cta-btn" id="submitBtn" onclick="submitForm()">Get My Free Treat →</button>
+
+    <p class="footer-note">⏳ Valid for 3 days · Redeem at Sugarleaf Café</p>
+
+  </div>
+
+  <!-- SUCCESS SCREEN -->
+  <div class="success-screen" id="successScreen">
+    <div class="big-icon">🎉</div>
+    <h2>You're In!</h2>
+    <p>Thank you for submitting your details.<br><strong>Please check your email</strong> for your reward coupon.<br><br>
+    <span style="font-size:12px;color:var(--text-muted);">⏳ Valid for 3 days · Show at Sugarleaf Café</span></p>
+  </div>
+
+</div>
+
+<script>
+  // ✅ PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL BELOW
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyeB08q_DySwcpg7OPtWOVLe7Bt_KjX8bShrwGmNOB1KtDuqGMj2xbFF1kAIIgpLnae/exec";
+
+  async function submitForm() {
+    const name  = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    // Basic validation
+    if (!name || !phone || !email) {
+      alert("Please fill in Name, Phone and Email.");
+      return;
+    }
+    if (!/^[0-9]{10}$/.test(phone)) {
+      alert("Please enter a valid 10-digit phone number.");
+      return;
+    }
+
+    // Collect checkboxes
+    const enjoyChecked = [...document.querySelectorAll('.pills input[type=checkbox]:checked')]
+      .map(cb => cb.value).join(', ');
+
+    // Collect radio
+    const drinkSelected = document.querySelector('input[name=drink]:checked');
+    const drink = drinkSelected ? drinkSelected.value : '';
+
+    // Disable button while submitting
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting…';
+
+    try {
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, email, enjoy: enjoyChecked, drink })
+      });
+
+      // Show success screen
+      document.getElementById('formBody').style.display = 'none';
+      document.getElementById('successScreen').style.display = 'block';
+
+    } catch (err) {
+      alert("Something went wrong. Please try again.");
+      btn.disabled = false;
+      btn.textContent = 'Get My Free Treat →';
+    }
+  }
+</script>
+
+</body>
+</html>
